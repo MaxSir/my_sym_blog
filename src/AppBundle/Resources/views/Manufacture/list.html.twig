@@ -1,0 +1,44 @@
+{% extends '@App/base.html.twig' %}
+
+{% block content %}
+    <div class="conteiner-fluid">
+        <div class="sub-header row">
+            <div class="col-md-9">
+                <h2>All created manufactures</h2>
+            </div>
+            <div class="col-md-3" style=" padding-top: 25px">
+                <a class="btn btn-success" style="float: right" href="{{ path('manufacture_create') }}">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    Add new manufacure
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Manufacture</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for manufacture in manufactures %}
+                <tr>
+                    <td>{{ manufacture.id }}</td>
+                    <td>{{ manufacture.name|default('no manufacture') }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('manufacture_edit', { manufacture: manufacture.id }) }}">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                        <a class="btn bg-danger" href="{{ path('manufacture_delete', { manufacture: manufacture.id }) }}">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends '@App/base.html.twig' %}
+
+{% block content %}
+
+    <div class="col-md-4">
+        {{ form_start(form, { 'method': 'post'}) }}
+        <div class="form-group">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name, { 'attr': { class: 'form-control' } }) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.manufacture) }}
+            {{ form_widget(form.manufacture, { 'attr': { class: 'form-control' } }) }}
+            <a href="{{ path('manufacture_create') }}" data-toggle="modal" data-target="#createManufacture">Add manufacture</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save changes</button>
+
+        {{ form_end(form) }}
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="createManufacture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

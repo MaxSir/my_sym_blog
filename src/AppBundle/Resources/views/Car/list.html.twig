@@ -1,0 +1,55 @@
+{% extends '@App/base.html.twig' %}
+
+{% block content %}
+    <div class="sub-header row">
+        <div class="col-md-8">
+            <h2>All created cars</h2>
+        </div>
+        <div class="col-md-4" style="padding-top: 25px">
+            <a class="btn btn-success" style="float: right" href="{{ path('car_create') }}">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                Add new car
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Model</th>
+                <th>Manufacture</th>
+                <th>Color</th>
+                <th>Year</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for car in cars %}
+                <tr>
+                    <td>{{ car.id }}</td>
+                    <td>
+                        <a href="{{ path('model_edit', { model: car.model.id }) }}">
+                            {{ car.model.name }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('manufacture_edit', { manufacture: car.model.manufacture.id }) }}">
+                            {{ car.model.manufacture.name }}
+                        </a>
+                    </td>
+                    <td>{{ car.color }}</td>
+                    <td>{{ car.year }}</td>
+                    <td><a href="{{ path('car_edit', {car: car.id }) }}" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                        <a class="btn bg-danger" href="{{ path('car_delete', { car: car.id }) }}">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
